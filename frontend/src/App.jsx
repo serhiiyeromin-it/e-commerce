@@ -54,6 +54,8 @@ import Checkout from "./components/Checkout";
 import Home from "./Home";
 import { CartProvider } from "./context/CartContext";
 import Cart from "./Cart";
+import OrderSuccess from "./pages/OrderSuccess";
+import Payment from "./pages/Payment";
 
 
 function App() {
@@ -89,6 +91,9 @@ function App() {
 
       {/* Вот тут — роутинг */}
       <Routes>
+        {/* другие маршруты */}
+        <Route path="/payment" element={<Payment />} />
+        <Route path="/success" element={<OrderSuccess />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/dashboard" element={

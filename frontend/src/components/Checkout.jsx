@@ -1,11 +1,13 @@
 import React, { useState, useContext } from "react";
 import axios from "axios";
 import { CartContext } from "../context/CartContext";
+import { useNavigate } from "react-router-dom";
 
 const Checkout = () => {
     const [customer, setCustomer] = useState("");
     const [address, setAddress] = useState("");
     const { cartItems, clearCart } = useContext(CartContext);
+    const navigate = useNavigate();
 
     //   const handleOrder = async () => {
     //     try {
@@ -45,6 +47,7 @@ const Checkout = () => {
             clearCart();
             setCustomer("");
             setAddress("");
+            navigate("/success");
         } catch (error) {
             console.error("Ошибка при заказе", error);
         }
