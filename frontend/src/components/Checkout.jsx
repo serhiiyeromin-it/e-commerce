@@ -9,22 +9,6 @@ const Checkout = () => {
     const { cartItems, clearCart } = useContext(CartContext);
     const navigate = useNavigate();
 
-    //   const handleOrder = async () => {
-    //     try {
-    //       const response = await axios.post("http://localhost:5000/api/order", {
-    //         customer,
-    //         address,
-    //         items: cartItems,
-    //       });
-
-    //       alert("Заказ создан!");
-    //       clearCart();
-    //       setCustomer("");
-    //       setAddress("");
-    //     } catch (error) {
-    //       console.error("Ошибка при заказе", error);
-    //     }
-    //   };
     const handleOrder = async () => {
         try {
             const orderItems = cartItems.map((item) => ({
@@ -36,12 +20,22 @@ const Checkout = () => {
 
             console.log("cartItems", cartItems);
 
+            const token = localStorage.getItem("token");
 
-            const response = await axios.post("http://localhost:5000/api/order", {
-                customer,
-                address,
-                items: orderItems,
-            });
+            const response = await axios.post(
+                "http://localhost:5000/api/order",
+                {
+                    customer,
+                    address,
+                    items: orderItems,
+                },
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            );
+
 
             alert("Заказ создан!");
             clearCart();
