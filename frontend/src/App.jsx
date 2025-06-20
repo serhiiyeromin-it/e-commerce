@@ -1,43 +1,3 @@
-// import { useState } from 'react'
-// import reactLogo from './assets/react.svg'
-// import viteLogo from '/vite.svg'
-// import './App.css'
-// import PrivateRoute from "./utils/PrivateRoute";
-// import Dashboard from "./pages/Dashboard";
-
-
-
-// function App() {
-//   const [count, setCount] = useState(0)
-
-//   return (
-//     <>
-//       <div>
-//         <a href="https://vite.dev" target="_blank">
-//           <img src={viteLogo} className="logo" alt="Vite logo" />
-//         </a>
-//         <a href="https://react.dev" target="_blank">
-//           <img src={reactLogo} className="logo react" alt="React logo" />
-//         </a>
-//       </div>
-//       <h1>Vite + React</h1>
-//       <div className="card">
-//         <button onClick={() => setCount((count) => count + 1)}>
-//           count is {count}
-//         </button>
-//         <Route path="/dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
-//         <p>
-//           Edit <code>src/App.jsx</code> and save to test HMR
-//         </p>
-//       </div>
-//       <p className="read-the-docs">
-//         Click on the Vite and React logos to learn more
-//       </p>
-//     </>
-//   )
-// }
-
-// export default App
 
 import { useState } from 'react';
 import reactLogo from './assets/react.svg';
@@ -56,6 +16,12 @@ import { CartProvider } from "./context/CartContext";
 import Cart from "./Cart";
 import OrderSuccess from "./pages/OrderSuccess";
 import Payment from "./pages/Payment";
+import AdminLayout from "./admin/AdminLayout";
+import Users from "./admin/Users";
+import Orders from "./admin/Orders";
+import Products from "./admin/Products";
+import AdminRoute from "./utils/AdminRoute";
+import AdminDashboard from "./admin/Dashboard";
 
 
 function App() {
@@ -74,14 +40,14 @@ function App() {
         </a>
       </div>
       <h1>Vite + React</h1>
-      
+
       <CartProvider>
-      <div>
-        <Cart />
-        <Checkout />
-        <Home />
-      </div>
-    </CartProvider>
+        <div>
+          <Cart />
+          <Checkout />
+          <Home />
+        </div>
+      </CartProvider>
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
@@ -92,6 +58,8 @@ function App() {
       {/* Вот тут — роутинг */}
       <Routes>
         {/* другие маршруты */}
+        <Route path="/" element={<Home />} />
+        {/* <Route path="/admin/*" element={<AdminRoute><AdminLayout /></AdminRoute>} />  */}
         <Route path="/payment" element={<Payment />} />
         <Route path="/success" element={<OrderSuccess />} />
         <Route path="/register" element={<Register />} />
@@ -101,12 +69,51 @@ function App() {
             <Dashboard />
           </PrivateRoute>
         } />
+
+        
+        <Route
+          path="/admin/*"
+          element={
+            <AdminRoute>
+              <AdminLayout />
+            </AdminRoute>
+          }
+        >
+          <Route index element={<AdminDashboard />} />
+          <Route path="users" element={<Users />} />
+          <Route path="orders" element={<Orders />} />
+          <Route path="products" element={<Products />} />
+        </Route>
+
+
+
+        {/* <Route
+          path="/admin"
+          element={
+            <AdminRoute>
+              <AdminDashboard />
+            </AdminRoute>
+          }
+        />
+        <Route
+          path="/admin"
+          element={
+            <AdminRoute>
+              <AdminLayout />
+            </AdminRoute>
+          }
+        > */}
+        {/* <Route index element={<Dashboard />} />
+          <Route path="users" element={<Users />} />
+          <Route path="orders" element={<Orders />} />
+          <Route path="products" element={<Products />} />
+        </Route> */}
       </Routes>
 
       <p className="read-the-docs">
         Нажми на логотипы Vite и React, чтобы узнать больше
       </p>
-    </BrowserRouter>
+    </BrowserRouter >
   );
 }
 
