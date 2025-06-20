@@ -17,3 +17,5 @@ If you are developing a production application, we recommend using TypeScript wi
 # git add .
 # git commit -m "Обновление проекта"
 # git push origin main
+
+# 19.06.
