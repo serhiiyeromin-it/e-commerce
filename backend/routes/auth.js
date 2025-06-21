@@ -1,5 +1,4 @@
 
-// module.exports = router;
 
 const express = require("express");
 const bcrypt = require("bcryptjs");
@@ -37,7 +36,7 @@ router.post("/login", async (req, res) => {
 // ✅ Новый маршрут: получить данные пользователя по токену
 router.get("/user", authMiddleware, async (req, res) => {
   try {
-    const user = await User.findById(req.user.id).select("username email address");
+    const user = await User.findById(req.user.id).select("username email role address");
     if (!user) return res.status(404).json({ message: "Пользователь не найден" });
     res.json(user);
   } catch (err) {

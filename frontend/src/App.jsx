@@ -6,9 +6,8 @@ import './App.css';
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import PrivateRoute from './utils/PrivateRoute';
-import Dashboard from './pages/Dashboard';
-import Register from './components/Register'; // если используешь
-// Импортируй страницу Login, если она есть
+import Dashboard from './pages/UserDashboard';
+import Register from './components/Register';
 import Login from "./pages/Login";
 import Checkout from "./components/Checkout";
 import Home from "./Home";
@@ -21,7 +20,7 @@ import Users from "./admin/Users";
 import Orders from "./admin/Orders";
 import Products from "./admin/Products";
 import AdminRoute from "./utils/AdminRoute";
-import AdminDashboard from "./admin/Dashboard";
+import AdminDashboard from "./admin/AdminDashboard";
 
 
 function App() {
