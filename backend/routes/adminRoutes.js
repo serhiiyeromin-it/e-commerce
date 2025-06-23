@@ -64,20 +64,6 @@ router.get("/products", authMiddleware, verifyAdmin, async (req, res) => {
   res.json(products);
 });
 
-// // ✅ Добавление нового товара
-// router.post("/products", authMiddleware, verifyAdmin, async (req, res) => {
-//   const { title, description, price, image } = req.body;
-
-//   const newProduct = new Product({
-//     title,
-//     description,
-//     price,
-//     image,
-//   });
-
-//   await newProduct.save();
-//   res.json({ message: "Товар добавлен", product: newProduct });
-// });
 
 // ✅ Добавление нового товара (с изображением!)
 router.post(

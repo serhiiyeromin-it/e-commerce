@@ -30,32 +30,24 @@ function App() {
 
   return (
     <BrowserRouter>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-
+      <h1>E-Commerce</h1>
       <CartProvider>
-        <div>
-          <Cart />
-          <Checkout />
-          {/* <Home /> */}
-        </div>
+        <Routes>
+          <Route path="/" element={<><Cart /><Home /></>} />
+          <Route path="/checkout" element={<><Cart /><Checkout /></>} />
+          <Route path="/success" element={<OrderSuccess />} />
+          ...
+        </Routes>
       </CartProvider>
-    
+
 
       {/* Вот тут — роутинг */}
       <Routes>
         {/* другие маршруты */}
-        <Route path="/" element={<Home />} />
-        {/* <Route path="/admin/*" element={<AdminRoute><AdminLayout /></AdminRoute>} />  */}
+        {/* <Route path="/" element={<Home />} /> */}
+
         <Route path="/payment" element={<Payment />} />
-        <Route path="/success" element={<OrderSuccess />} />
+        {/* <Route path="/success" element={<OrderSuccess />} /> */}
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/dashboard" element={
@@ -64,7 +56,7 @@ function App() {
           </PrivateRoute>
         } />
 
-        
+
         <Route
           path="/admin/*"
           element={
@@ -80,9 +72,6 @@ function App() {
         </Route>
       </Routes>
 
-      <p className="read-the-docs">
-        Нажми на логотипы Vite и React, чтобы узнать больше
-      </p>
     </BrowserRouter >
   );
 }
