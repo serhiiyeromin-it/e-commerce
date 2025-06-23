@@ -83,30 +83,6 @@ function App() {
           <Route path="orders" element={<Orders />} />
           <Route path="products" element={<Products />} />
         </Route>
-
-
-
-        {/* <Route
-          path="/admin"
-          element={
-            <AdminRoute>
-              <AdminDashboard />
-            </AdminRoute>
-          }
-        />
-        <Route
-          path="/admin"
-          element={
-            <AdminRoute>
-              <AdminLayout />
-            </AdminRoute>
-          }
-        > */}
-        {/* <Route index element={<Dashboard />} />
-          <Route path="users" element={<Users />} />
-          <Route path="orders" element={<Orders />} />
-          <Route path="products" element={<Products />} />
-        </Route> */}
       </Routes>
 
       <p className="read-the-docs">
