@@ -4,6 +4,21 @@ import axios from "axios";
 const Orders = () => {
   const [orders, setOrders] = useState([]);
 
+  const deleteOrder = async (id) => {
+  const token = localStorage.getItem("token");
+  try {
+    await axios.delete(`http://localhost:5000/api/admin/orders/${id}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    alert("Заказ удалён");
+    setOrders(orders.filter(o => o._id !== id)); // обновляем
+  } catch (err) {
+    console.error("Ошибка удаления:", err.response?.data || err.message);
+  }
+  };
+
+
+
   useEffect(() => {
     const token = localStorage.getItem("token");
 
@@ -26,6 +41,8 @@ const Orders = () => {
             {order.items.map((item, idx) => (
               <li key={idx}>{item.name} — {item.price} ₽ × {item.quantity || 1}</li>
             ))}
+            <button onClick={() => deleteOrder(order._id)}>Удалить заказ</button>
+
           </ul>
         </div>
       ))}

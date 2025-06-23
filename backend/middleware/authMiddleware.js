@@ -3,6 +3,7 @@ const jwt = require("jsonwebtoken");
 
 // 🔐 Middleware для проверки токена (для любого авторизованного пользователя)
 const authMiddleware = (req, res, next) => {
+  console.log("ВСЕ ЗАГОЛОВКИ:", req.headers);
   const authHeader = req.headers.authorization;
   console.log("Заголовки:", authHeader);
 

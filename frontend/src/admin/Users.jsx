@@ -14,6 +14,21 @@ const Users = () => {
     .catch(err => console.error("Ошибка при загрузке пользователей", err));
   }, []);
 
+  const deleteUser = async (id) => {
+  const token = localStorage.getItem("token");
+  try {
+    await axios.delete(`http://localhost:5000/api/admin/users/${id}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    alert("Пользователь удалён");
+    setUsers(users.filter(u => u._id !== id)); // обновляем список
+  } catch (err) {
+    console.error("Ошибка:", err.response?.data || err.message);
+  }
+  };
+
+
+
   return (
     <div style={{ padding: "20px" }}>
       <h2>👥 Все пользователи</h2>
@@ -24,6 +39,7 @@ const Users = () => {
             <th>Email</th>
             <th>Роль</th>
             <th>Адрес</th>
+            <th>Löschen</th>   
           </tr>
         </thead>
         <tbody>
@@ -33,6 +49,8 @@ const Users = () => {
               <td>{u.email}</td>
               <td>{u.role}</td>
               <td>{u.address || "–"}</td>
+              <td><button onClick={() => deleteUser(u._id)}>Удалить</button>
+</td>
             </tr>
           ))}
         </tbody>

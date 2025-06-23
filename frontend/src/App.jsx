@@ -44,15 +44,10 @@ function App() {
         <div>
           <Cart />
           <Checkout />
-          <Home />
+          {/* <Home /> */}
         </div>
       </CartProvider>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>Редактируй <code>src/App.jsx</code> и сохраняй — работает HMR!</p>
-      </div>
+    
 
       {/* Вот тут — роутинг */}
       <Routes>
