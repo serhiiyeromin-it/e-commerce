@@ -1,54 +1,10 @@
 
-// import React, { useContext, useEffect, useState } from "react";
-// import { CartContext } from "./context/CartContext";
-// import axios from "axios";
-// import ProductList from "./components/ProductList";
-
-// const Home = () => {
-//   const { addToCart } = useContext(CartContext);
-//   const [products, setProducts] = useState([]);
-
-//   useEffect(() => {
-//     axios.get("http://localhost:5000/api/products")
-//       .then((res) => {
-//         setProducts(res.data);
-//       })
-//       .catch((err) => {
-//         console.error("Ошибка загрузки товаров:", err);
-//       });
-//   }, []);
-
-//   return (
-//     <div>
-//       {/* <ProductList products={products} /> */}
-//       <ProductList products={products} addToCart={addToCart} />
-
-//       <h1>Каталог товаров</h1>
-//       <div>
-//         {products.map((p) => (
-          
-//           <div key={p._id} style={{ border: "1px solid #ccc", margin: "10px", padding: "10px" }}>
-//             <h3>{p.title}</h3>
-//             <img
-//               src={`http://localhost:5000${p.image}`}
-//               alt={p.title}
-//               style={{ width: 150, height: 150, objectFit: 'cover' }}
-//             />
-//             <p>{p.price} $</p>
-//             <button onClick={() => addToCart(p)}>Добавить в корзину</button>
-//           </div>
-
-//         ))}
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default Home;
-
 import React, { useContext, useEffect, useState } from "react";
 import { CartContext } from "./context/CartContext";
 import axios from "axios";
+import Banner from "./components/Banner";
+import { Link } from "react-router-dom";
+import "./Home.css";
 
 const Home = () => {
   const { addToCart } = useContext(CartContext);
@@ -61,7 +17,7 @@ const Home = () => {
     axios.get("http://localhost:5000/api/products")
       .then((res) => {
         setProducts(res.data);
-        setFilteredProducts(res.data); // по умолчанию — все товары
+        setFilteredProducts(res.data);
       })
       .catch((err) => {
         console.error("Ошибка загрузки товаров:", err);
@@ -86,7 +42,6 @@ const Home = () => {
     const order = e.target.value;
     setSortOrder(order);
 
-    // Применим сортировку к уже отфильтрованным
     let sorted = [...filteredProducts];
     if (order === "asc") {
       sorted.sort((a, b) => a.price - b.price);
@@ -98,8 +53,7 @@ const Home = () => {
 
   return (
     <div>
-      <h1>Каталог товаров</h1>
-
+      <Banner />
       <div style={{ marginBottom: "20px" }}>
         <input
           type="text"
@@ -119,13 +73,15 @@ const Home = () => {
       <div>
         {filteredProducts.map((p) => (
           <div key={p._id} style={{ border: "1px solid #ccc", margin: "10px", padding: "10px" }}>
-            <h3>{p.title}</h3>
-            <img
-              src={`http://localhost:5000${p.image}`}
-              alt={p.title}
-              style={{ width: 150, height: 150, objectFit: 'cover' }}
-            />
-            <p>{p.price} $</p>
+            <Link to={`/product/${p._id}`} style={{ textDecoration: "none", color: "black" }}>
+              <h3>{p.title}</h3>
+              <img
+                src={`http://localhost:5000${p.image}`}
+                alt={p.title}
+                style={{ width: 150, height: 150, objectFit: 'cover' }}
+              />
+              <p>{p.price} $</p>
+            </Link>
             <button onClick={() => addToCart(p)}>Добавить в корзину</button>
           </div>
         ))}
