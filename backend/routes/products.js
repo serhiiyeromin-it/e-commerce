@@ -14,4 +14,15 @@ router.get("/products", async (req, res) => {
   }
 });
 
+router.get("/products/:id", async (req, res) => {
+  try {
+    const product = await Product.findById(req.params.id);
+    if (!product) return res.status(404).json({ message: "Товар не найден" });
+    res.json(product);
+  } catch (err) {
+    console.error("Ошибка получения товара:", err);
+    res.status(500).json({ message: "Ошибка сервера" });
+  }
+});
+
 module.exports = router;

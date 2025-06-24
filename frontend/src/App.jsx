@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import PrivateRoute from './utils/PrivateRoute';
 import AdminRoute from "./utils/AdminRoute";
-
+import Header from "./components/Header";
 import Home from "./Home";
 import Cart from "./Cart";
 import Checkout from "./components/Checkout";
@@ -18,15 +18,21 @@ import Orders from "./admin/Orders";
 import Products from "./admin/Products";
 import AdminDashboard from "./admin/AdminDashboard";
 import { CartProvider } from "./context/CartContext";
+import Footer from "./components/Footer";
+import ProductDetails from './pages/ProductDetails';
 
 function App() {
   return (
     <BrowserRouter>
-      <h1>E-Commerce</h1>
+      
       <CartProvider>
+        <Header />
         <Routes>
           {/* Клиентские страницы */}
-          <Route path="/" element={<><Cart /><Home /></>} />
+          {/* <Route path="/" element={<><Cart /><Home /></>} /> */}
+          <Route path="/product/:id" element={<ProductDetails />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/cart" element={<Cart />} />
           <Route path="/checkout" element={<><Cart /><Checkout /></>} />
           <Route path="/payment" element={<Payment />} />
           <Route path="/success" element={<OrderSuccess />} />
@@ -56,6 +62,7 @@ function App() {
             <Route path="products" element={<Products />} />
           </Route>
         </Routes>
+        <Footer />
       </CartProvider>
     </BrowserRouter>
   );
