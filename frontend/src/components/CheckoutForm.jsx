@@ -1,35 +1,88 @@
-import React from "react";
-import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 
-const CheckoutForm = () => {
+import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
+import axios from "axios";
+import { useContext, useEffect, useState } from "react";
+import { CartContext } from "../context/CartContext";
+import { useNavigate } from "react-router-dom";
+
+const CheckoutForm = ({ orderData }) => {
   const stripe = useStripe();
   const elements = useElements();
+  const { clearCart } = useContext(CartContext);
+  const navigate = useNavigate();
+
+  const [clientSecret, setClientSecret] = useState("");
+
+  useEffect(() => {
+    // вычисляем общую сумму
+    const total = orderData.cartItems.reduce(
+      (sum, item) => sum + item.price * (item.quantity || 1),
+      0
+    );
+
+    // получаем clientSecret
+    const getClientSecret = async () => {
+      const res = await axios.post("http://localhost:5000/api/create-payment-intent", {
+        amount: total * 100, // Stripe принимает копейки
+      });
+      setClientSecret(res.data.clientSecret);
+    };
+
+    getClientSecret();
+  }, [orderData]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     if (!stripe || !elements) return;
 
-    const card = elements.getElement(CardElement);
+    const cardElement = elements.getElement(CardElement);
 
-    const { error, paymentMethod } = await stripe.createPaymentMethod({
-      type: "card",
-      card,
-    });
+    try {
+      const { paymentIntent, error } = await stripe.confirmCardPayment(clientSecret, {
+        payment_method: {
+          card: cardElement,
+        },
+      });
 
-    if (error) {
-      console.error(error);
-      alert("Ошибка оплаты: " + error.message);
-    } else {
-      console.log("PaymentMethod:", paymentMethod);
-      alert("Оплата прошла успешно!");
+      if (error) {
+        console.error("Payment failed:", error);
+        return;
+      }
+
+      if (paymentIntent.status === "succeeded") {
+        const token = localStorage.getItem("token");
+
+        await axios.post(
+          "http://localhost:5000/api/order",
+          {
+            customer: orderData.customer,
+            address: orderData.address,
+            items: orderData.cartItems.map((item) => ({
+              productId: item._id || item.id,
+              name: item.title || item.name,
+              price: item.price,
+              quantity: item.quantity || 1,
+            })),
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        clearCart();
+        navigate("/success");
+      }
+    } catch (err) {
+      console.error("Ошибка при оплате или заказе:", err);
     }
   };
 
   return (
     <form onSubmit={handleSubmit}>
       <CardElement />
-      <button type="submit" disabled={!stripe}>
+      <button type="submit" disabled={!stripe || !clientSecret}>
         Оплатить
       </button>
     </form>
@@ -37,3 +90,4 @@ const CheckoutForm = () => {
 };
 
 export default CheckoutForm;
+

@@ -12,6 +12,9 @@ app.use(cors({
 
 app.use(express.json());
 
+app.use("/api", require("./routes/payment"));
+
+
 const productRoutes = require("./routes/products");
 app.use("/api", productRoutes);
 

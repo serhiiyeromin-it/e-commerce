@@ -20,7 +20,7 @@ const Catalog = () => {
       <ul>
         {products.map((product) => (
           <li key={product._id} style={{ marginBottom: "10px" }}>
-            <strong>{product.title}</strong> — {product.price} ₽
+            <strong>{product.title}</strong> — {product.price} $
             {product.image && (
               <div>
                 <img

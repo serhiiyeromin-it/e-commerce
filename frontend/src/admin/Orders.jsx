@@ -39,7 +39,7 @@ const Orders = () => {
           <p><strong>Дата:</strong> {new Date(order.createdAt).toLocaleDateString("ru-RU")}</p>
           <ul>
             {order.items.map((item, idx) => (
-              <li key={idx}>{item.name} — {item.price} ₽ × {item.quantity || 1}</li>
+              <li key={idx}>{item.name} — {item.price} $ × {item.quantity || 1}</li>
             ))}
             <button onClick={() => deleteOrder(order._id)}>Удалить заказ</button>
 

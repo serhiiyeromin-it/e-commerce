@@ -9,6 +9,17 @@ const Checkout = () => {
     const { cartItems, clearCart } = useContext(CartContext);
     const navigate = useNavigate();
 
+    const handleGoToPayment = () => {
+        navigate("/payment", {
+            state: {
+                customer,
+                address,
+                cartItems,
+            },
+        });
+    };
+
+
     const handleOrder = async () => {
         try {
             const orderItems = cartItems.map((item) => ({
@@ -42,6 +53,7 @@ const Checkout = () => {
             setCustomer("");
             setAddress("");
             navigate("/success");
+            window.location.reload();
         } catch (error) {
             console.error("Ошибка при заказе", error);
         }
@@ -70,12 +82,14 @@ const Checkout = () => {
             <ul>
                 {cartItems.map((item) => (
                     <li key={item.id}>
-                        {item.name} - {item.price} ₽
+                        {item.title} - {item.price} $
                     </li>
                 ))}
             </ul>
 
-            <button onClick={handleOrder}>Оплатить</button>
+            {/* <button onClick={handleOrder}>Оплатить</button> */}
+            <button onClick={handleGoToPayment}>Оплатить</button>
+
         </div>
     );
 };

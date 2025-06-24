@@ -34,8 +34,8 @@ const Cart = () => {
             <li key={item.id} style={{ marginBottom: "10px" }}>
               <strong>📦 {item.title || "Без названия"}</strong>
               <div>
-                Цена: {item.price} ₽ × {item.quantity} ={" "}
-                <strong>{item.price * item.quantity} ₽</strong>
+                Цена: {item.price} $ × {item.quantity} ={" "}
+                <strong>{item.price * item.quantity} $</strong>
               </div>
               <button
                 onClick={() => removeFromCart(item._id)}
@@ -56,7 +56,7 @@ const Cart = () => {
         </ul>
       )}
 
-      <h3>Итого: {total} ₽</h3>
+      <h3>Итого: {total} $</h3>
       <button onClick={() => navigate("/checkout")}>
         🧾 Оформить заказ
       </button>

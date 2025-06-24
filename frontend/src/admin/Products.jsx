@@ -84,7 +84,7 @@ const Products = () => {
       <ul>
         {products.map((p) => (
           <li key={p._id}>
-            {p.title} — {p.price} ₽
+            {p.title} — {p.price} $
             <button onClick={() => deleteProduct(p._id)} style={{ marginLeft: "10px" }}>
               Удалить
             </button>

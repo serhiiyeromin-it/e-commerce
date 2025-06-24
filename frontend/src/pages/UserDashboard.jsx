@@ -43,7 +43,7 @@ export default function Dashboard() {
           <h2>🧑 Информация о пользователе</h2>
           <p><strong>Имя:</strong> {user.name}</p>
           <p><strong>Email:</strong> {user.email}</p>
-          <p><strong>Адрес доставки:</strong> {user.address || "Не указан"}</p>
+          {/* <p><strong>Адрес доставки:</strong> {user.address || "Не указан"}</p> */}
         </div>
       )}
 
@@ -68,7 +68,7 @@ export default function Dashboard() {
               <ul>
                 {order.items.map((item, idx) => (
                   <li key={idx}>
-                    {item.name} — {item.price} ₽ × {item.quantity || 1}
+                    {item.name} — {item.price} $ × {item.quantity || 1}
                   </li>
                 ))}
               </ul>
