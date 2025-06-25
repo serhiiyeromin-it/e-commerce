@@ -39,8 +39,6 @@ const styles = {
 
     width: "1200px",
     height: "400px",
-    width: "100%",
-    height: "300px",
     overflow: "hidden",
     position: "relative",
     marginBottom: "20px",
@@ -50,10 +48,6 @@ const styles = {
     height: "400px",
     objectFit: "cover",
     transition: "opacity 0.4s ease-in-out",
-    width: "100%",
-    height: "100%",
-    objectFit: "cover",
-    transition: "opacity 0.5s ease-in-out",
   },
 };
 
