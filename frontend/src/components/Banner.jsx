@@ -43,7 +43,8 @@ const styles = {
     width: "1200px",
     height: "400px",
     objectFit: "cover",
-    transition: "opacity 0.4s ease-in-out",
+    transition: "opacity 0.5s ease-in-out",
+>>>>>>> 584b791e400e2f7d06d0829334c179e653e17ea3
   },
 };
 
