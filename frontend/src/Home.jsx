@@ -1,10 +1,9 @@
 
 import React, { useContext, useEffect, useState } from "react";
 import { CartContext } from "./context/CartContext";
-import axios from "axios";
+import axios from "axios"; 
 import Banner from "./components/Banner";
 import { Link } from "react-router-dom";
-import "./Home.css";
 
 const Home = () => {
   const { addToCart } = useContext(CartContext);
@@ -14,7 +13,7 @@ const Home = () => {
   const [filteredProducts, setFilteredProducts] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:5000/api/products")
+    axios.get("http://localhost:5000/api/products") 
       .then((res) => {
         setProducts(res.data);
         setFilteredProducts(res.data);
@@ -54,25 +53,28 @@ const Home = () => {
   return (
     <div>
       <Banner />
-      <div style={{ marginBottom: "20px" }}>
+      <div style={styles.searchContainer}>
         <input
           type="text"
-          placeholder="Поиск по названию"
+          placeholder="🔎 Поиск по названию"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
+          style={styles.input}
         />
-        <button onClick={handleSearch}>🔍 Найти</button>
+        <button onClick={handleSearch} style={styles.button}>
+          Найти
+        </button>
 
-        <select onChange={handleSortChange} value={sortOrder}>
+        <select onChange={handleSortChange} value={sortOrder} style={styles.select}>
           <option value="">Сортировка</option>
           <option value="asc">Цена ↑</option>
           <option value="desc">Цена ↓</option>
         </select>
       </div>
 
-      <div>
+      <div style={styles.productGrid}>
         {filteredProducts.map((p) => (
-          <div key={p._id} style={{ border: "1px solid #ccc", margin: "10px", padding: "10px" }}>
+          <div key={p._id} style={styles.card}>
             <Link to={`/product/${p._id}`} style={{ textDecoration: "none", color: "black" }}>
               <h3>{p.title}</h3>
               <img
@@ -89,6 +91,58 @@ const Home = () => {
     </div>
   );
 };
+
+const styles = {
+  searchContainer: {
+    display: "flex",
+    gap: "10px",
+    marginBottom: "30px",
+    justifyContent: "center",
+    flexWrap: "wrap",
+  },
+  input: {
+    padding: "10px",
+    borderRadius: "8px",
+    border: "1px solid #ccc",
+    width: "200px",
+    outline: "none",
+    fontSize: "14px",
+    boxShadow: "0 1px 3px rgba(0,0,0,0.1)",
+  },
+  button: {
+    padding: "10px 15px",
+    borderRadius: "8px",
+    backgroundColor: "#007bff",
+    color: "#fff",
+    border: "none",
+    cursor: "pointer",
+    fontWeight: "bold",
+    transition: "0.3s",
+  },
+  select: {
+    padding: "10px",
+    borderRadius: "8px",
+    border: "1px solid #ccc",
+    outline: "none",
+    fontSize: "14px",
+    background: "#fff",
+  },
+  productGrid: {
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
+    gap: "20px",
+    padding: "20px",
+  },
+  card: {
+    border: "1px solid #ccc",
+    padding: "15px",
+    borderRadius: "8px",
+    backgroundColor: "#fff",
+    boxShadow: "0 2px 5px rgba(0,0,0,0.1)",
+    transition: "transform 0.2s",
+  },
+};
+
 
 export default Home;
 

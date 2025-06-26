@@ -11,7 +11,6 @@ const Payment = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  // если нет данных — вернуться на форму
   useEffect(() => {
     if (!location.state?.customer || !location.state?.address || !location.state?.cartItems) {
       navigate("/checkout");
@@ -19,9 +18,23 @@ const Payment = () => {
   }, [location, navigate]);
 
   return (
-    <Elements stripe={stripePromise}>
-      <CheckoutForm orderData={location.state} />
-    </Elements>
+    <div
+      style={{
+        maxWidth: "800px",
+        margin: "40px auto",
+        padding: "30px",
+        backgroundColor: "#ffffff",
+        boxShadow: "0 4px 16px rgba(0, 0, 0, 0.1)",
+        borderRadius: "12px",
+        fontFamily: "Arial, sans-serif",
+      }}
+    >
+      <h2 style={{ fontSize: "24px", marginBottom: "20px" }}>💳 Оплата заказа</h2>
+
+      <Elements stripe={stripePromise}>
+        <CheckoutForm orderData={location.state} />
+      </Elements>
+    </div>
   );
 };
 

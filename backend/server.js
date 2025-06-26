@@ -4,11 +4,17 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 
 const app = express();
+// app.use(cors({
+//   origin: "http://localhost:5173", // замените на порт вашего фронта
+//   credentials: true,
+//   allowedHeaders: ["Content-Type", "Authorization"],
+// }));
 app.use(cors({
-  origin: "http://localhost:5173", // замените на порт вашего фронта
+  origin: ["http://localhost:3000", "http://localhost:5173"],
   credentials: true,
   allowedHeaders: ["Content-Type", "Authorization"],
 }));
+
 
 app.use(express.json());
 
@@ -18,12 +24,19 @@ app.use("/api", require("./routes/payment"));
 const productRoutes = require("./routes/products");
 app.use("/api", productRoutes);
 
+require('dotenv').config();
 
-// ✅ Datenbank verbinden
-mongoose.connect("mongodb://localhost:27017/ecommerce", {
+
+// ✅ Datenbank verbinden // funktioniert mit Docker
+mongoose.connect("mongodb://mongo:27017/ecommerce", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
+// // ✅ Datenbank verbinden // // das funktioniert ohne Docker
+// mongoose.connect("mongodb://localhost:27017/ecommerce", {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true,
+// });
 
 // ✅ Authentifizierung
 const authRoutes = require("./routes/auth");
