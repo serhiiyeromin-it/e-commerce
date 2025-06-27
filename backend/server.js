@@ -50,9 +50,9 @@ app.use("/api", orderRoutes);  // /api/orders
 const adminRoutes = require("./routes/adminRoutes");
 app.use("/api/admin", adminRoutes);  // /api/admin/users, /api/admin/orders
 
-// ✅ Serverstart
-app.listen(5000, () => console.log("Backend läuft auf Port 5000"));
 
 // ✅ Statische Dateien für Bilder
 app.use("/uploads", express.static("uploads"));
 
+// ✅ Serverstart
+app.listen(5000, () => console.log("Backend läuft auf Port 5000"));

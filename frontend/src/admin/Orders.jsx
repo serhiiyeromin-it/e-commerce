@@ -53,7 +53,7 @@ const Orders = () => {
             <p><strong>📅 Дата:</strong> {new Date(order.createdAt).toLocaleDateString("ru-RU")}</p>
 
             <h4 style={{ marginTop: "15px", marginBottom: "8px" }}>🛒 Товары:</h4>
-            <ul style={{ paddingLeft: "20px" }}>
+            <ul style={{ paddingLeft: "20px", listStyle: "none", }}>
               {order.items.map((item, idx) => (
                 <li key={idx}>
                   {item.name} — {item.price} $ × {item.quantity || 1}

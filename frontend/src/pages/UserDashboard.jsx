@@ -94,7 +94,7 @@ export default function Dashboard() {
             >
               <p><strong>Дата:</strong> {new Date(order.createdAt).toLocaleDateString()}</p>
               <p><strong>Адрес доставки:</strong> {order.address}</p>
-              <ul style={{ paddingLeft: "20px" }}>
+              <ul style={{ paddingLeft: "20px", listStyle: "none", }}>
                 {order.items.map((item, idx) => (
                   <li key={idx}>
                     {item.name} — {item.price} $ × {item.quantity || 1}

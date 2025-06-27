@@ -100,7 +100,7 @@ const Checkout = () => {
       />
 
       <h3 style={{ marginBottom: "10px" }}>🛍️ Товары в корзине:</h3>
-      <ul style={{ paddingLeft: "20px", marginBottom: "20px" }}>
+      <ul style={{ paddingLeft: "20px", marginBottom: "20px", listStyle: "none", }}>
         {cartItems.map((item) => (
           <li key={item.id}>
             {item.title} — <strong>{item.price} $</strong>

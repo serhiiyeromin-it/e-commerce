@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 
 const images = [
-  "/images/Handy.jpg",
-  "/images/iphone3.png",
-  "/images/iPhone.avif",
+  "/images/Samsung.png",
+  "/images/iPhone5.png",
+  "/images/Xiaomi.png",
 ];
 
 const Banner = () => {
@@ -44,7 +44,6 @@ const styles = {
     height: "400px",
     objectFit: "cover",
     transition: "opacity 0.5s ease-in-out",
->>>>>>> 584b791e400e2f7d06d0829334c179e653e17ea3
   },
 };
 

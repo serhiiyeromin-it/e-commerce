@@ -87,6 +87,7 @@ const Products = () => {
                   display: "flex",
                   justifyContent: "space-between",
                   alignItems: "center",
+                  listStyle: "none",
                 }}
               >
                 <div>
