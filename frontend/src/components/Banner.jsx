@@ -1,13 +1,9 @@
 import React, { useEffect, useState } from "react";
 
 const images = [
-  "/images/Handy.jpg",
-  "/images/iphone3.png",
-  "/images/iPhone.avif",
-  "/images/Samsung.avif",
-  "/images/Download.jpg",
-  "/images/Samsung.avif",
-  "/images/Xiaomi.jpg",
+  "/images/Samsung.png",
+  "/images/iPhone5.png",
+  "/images/Xiaomi.png",
 ];
 
 const Banner = () => {
@@ -47,7 +43,9 @@ const styles = {
     width: "1200px",
     height: "400px",
     objectFit: "cover",
-    transition: "opacity 0.4s ease-in-out",
+
+    transition: "opacity 0.5s ease-in-out",
+>>>>>>> Produktliste-mit-Filter,-Suche,-Sortierung-&-Pagination
   },
 };
 

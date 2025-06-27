@@ -28,27 +28,56 @@ export default function Dashboard() {
   };
 
   return (
-    <div style={{ padding: "20px" }}>
-      <h1>Личный кабинет</h1>
-      <p>Добро пожаловать, {user?.name || "пользователь"}!</p>
-      <button onClick={handleLogout}>Выйти</button>
+    <div
+      style={{
+        maxWidth: "800px",
+        margin: "50px auto",
+        padding: "30px",
+        backgroundColor: "#ffffff",
+        boxShadow: "0 4px 16px rgba(0, 0, 0, 0.1)",
+        borderRadius: "12px",
+        fontFamily: "Arial, sans-serif",
+      }}
+    >
+      <h1 style={{ marginBottom: "10px", fontSize: "28px", color: "#333" }}>Личный кабинет</h1>
+      <p style={{ fontSize: "18px", marginBottom: "20px" }}>
+        Добро пожаловать, <strong>{user?.name || "пользователь"}</strong>!
+      </p>
+
+      <button
+        onClick={handleLogout}
+        style={{
+          padding: "10px 20px",
+          backgroundColor: "#f44336",
+          color: "#fff",
+          border: "none",
+          borderRadius: "8px",
+          cursor: "pointer",
+          marginBottom: "30px",
+        }}
+      >
+        Выйти
+      </button>
 
       {user && (
-        <div style={{
-          marginTop: "20px",
-          border: "1px solid #ccc",
-          padding: "15px",
-          borderRadius: "8px"
-        }}>
-          <h2>🧑 Информация о пользователе</h2>
+        <div
+          style={{
+            border: "1px solid #ddd",
+            padding: "20px",
+            borderRadius: "10px",
+            backgroundColor: "#f7f7f7",
+            marginBottom: "40px",
+          }}
+        >
+          <h2 style={{ fontSize: "20px", marginBottom: "10px" }}>🧑 Информация о пользователе</h2>
           <p><strong>Имя:</strong> {user.name}</p>
           <p><strong>Email:</strong> {user.email}</p>
           {/* <p><strong>Адрес доставки:</strong> {user.address || "Не указан"}</p> */}
         </div>
       )}
 
-      <div style={{ marginTop: "30px" }}>
-        <h2>📦 История заказов</h2>
+      <div>
+        <h2 style={{ fontSize: "20px", marginBottom: "15px" }}>📦 История заказов</h2>
         {orders.length === 0 ? (
           <p>У вас пока нет заказов.</p>
         ) : (
@@ -56,16 +85,16 @@ export default function Dashboard() {
             <div
               key={order._id}
               style={{
-                border: "1px solid #aaa",
-                marginBottom: "15px",
-                padding: "10px",
-                borderRadius: "6px",
-                backgroundColor: "#f9f9f9",
+                border: "1px solid #ccc",
+                marginBottom: "20px",
+                padding: "15px",
+                borderRadius: "8px",
+                backgroundColor: "#fdfdfd",
               }}
             >
               <p><strong>Дата:</strong> {new Date(order.createdAt).toLocaleDateString()}</p>
               <p><strong>Адрес доставки:</strong> {order.address}</p>
-              <ul>
+              <ul style={{ paddingLeft: "20px", listStyle: "none", }}>
                 {order.items.map((item, idx) => (
                   <li key={idx}>
                     {item.name} — {item.price} $ × {item.quantity || 1}
@@ -79,5 +108,4 @@ export default function Dashboard() {
     </div>
   );
 }
-
 

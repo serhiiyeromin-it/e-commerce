@@ -1,20 +1,61 @@
+
 import React from "react";
-import { Link, Outlet } from "react-router-dom";
-import "./admin.css"; // опционально, можно стилизовать
+import { Link, Outlet, useLocation } from "react-router-dom";
 
 const AdminLayout = () => {
+  const location = useLocation();
+
+  const navItems = [
+    { to: "/admin", label: "🏠 Главная" },
+    { to: "/admin/users", label: "👤 Пользователи" },
+    { to: "/admin/orders", label: "📦 Заказы" },
+    { to: "/admin/products", label: "🛒 Товары" },
+  ];
+
   return (
-    <div style={{ display: "flex" }}>
-      <nav style={{ width: "200px", padding: "1rem", background: "#f3f3f3" }}>
-        <h3>Админ-панель</h3>
-        <ul style={{ listStyle: "none", padding: 0 }}>
-          <li><Link to="/admin">Главная</Link></li>
-          <li><Link to="/admin/users">Пользователи</Link></li>
-          <li><Link to="/admin/orders">Заказы</Link></li>
-          <li><Link to="/admin/products">Товары</Link></li>
+    <div style={{ display: "flex", minHeight: "100vh", fontFamily: "Arial, sans-serif" }}>
+      {/* Sidebar */}
+      <nav
+        style={{
+          width: "220px",
+          background: "#2d3748",
+          color: "white",
+          padding: "20px",
+        }}
+      >
+        <h2 style={{ fontSize: "22px", marginBottom: "20px" }}>👑 Админ-панель</h2>
+        <ul style={{ listStyle: "none", padding: 0, display: "flex", flexDirection: "column", gap: "12px" }}>
+          {navItems.map((item) => (
+            <li key={item.to}>
+              <Link
+                to={item.to}
+                style={{
+                  textDecoration: "none",
+                  color: location.pathname === item.to ? "#63b3ed" : "white",
+                  fontWeight: location.pathname === item.to ? "bold" : "normal",
+                  backgroundColor: location.pathname === item.to ? "#1a202c" : "transparent",
+                  padding: "10px 12px",
+                  borderRadius: "8px",
+                  display: "block",
+                  transition: "all 0.2s",
+                }}
+              >
+                {item.label}
+              </Link>
+            </li>
+          ))}
         </ul>
       </nav>
-      <main style={{ flexGrow: 1, padding: "1rem" }}>
+
+      {/* Main Content */}
+      <main
+        style={{
+          flexGrow: 1,
+          padding: "30px",
+          backgroundColor: "#f7fafc",
+          minHeight: "100vh",
+        }}
+      >
         <Outlet />
       </main>
     </div>
@@ -22,3 +63,5 @@ const AdminLayout = () => {
 };
 
 export default AdminLayout;
+
+

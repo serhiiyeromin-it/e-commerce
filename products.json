@@ -1,0 +1,34 @@
+[
+  {
+    "title": "iPhone 14 Pro",
+    "description": "Флагманский смартфон Apple с дисплеем Super Retina XDR",
+    "price": 1400,
+    "image": "/uploads/image-1750683566695-913629798.jpg",
+    "category": "Смартфоны",
+    "inStock": true
+  },
+  {
+    "title": "Ноутбук ASUS VivoBook",
+    "description": "Лёгкий и мощный ноутбук для повседневной работы",
+    "price": 800,
+    "image": "/uploads/image-1750683566695-913629798.jpg",
+    "category": "Ноутбуки",
+    "inStock": true
+  },
+  {
+    "title": "iPhone 14 Pro",
+    "description": "Флагманский смартфон Apple с дисплеем Super Retina XDR",
+    "price": 1300,
+    "image": "/uploads/image-1750683566695-913629798.jpg",
+    "category": "Смартфоны",
+    "inStock": true
+  },
+  {
+    "title": "Ноутбук ASUS VivoBook",
+    "description": "Лёгкий и мощный ноутбук для повседневной работы",
+    "price": 1200,
+    "image": "/uploads/image-1750683566695-913629798.jpg",
+    "category": "Ноутбуки",
+    "inStock": true
+  }
+]
