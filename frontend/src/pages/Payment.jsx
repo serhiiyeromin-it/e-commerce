@@ -29,7 +29,7 @@ const Payment = () => {
         fontFamily: "Arial, sans-serif",
       }}
     >
-      <h2 style={{ fontSize: "24px", marginBottom: "20px" }}>💳 Оплата заказа</h2>
+      <h2 style={{ fontSize: "24px", marginBottom: "20px" }}>💳 Zahlung für die Bestellung</h2>
 
       <Elements stripe={stripePromise}>
         <CheckoutForm orderData={location.state} />

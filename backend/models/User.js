@@ -5,8 +5,11 @@ const UserSchema = new mongoose.Schema({
   username: { type: String, required: true, unique: true },
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
-  role: { type: String, default: "user" }, // "user" по умолчанию, можно менять на "admin"
-  address: { type: String } // 🆕 Добавляем адрес доставки
+  role: { type: String, default: "user" }, // Standardmäßig „Benutzer“, kann in „Administrator“ geändert werden
+  address: { type: String } // 🆕 Hinzufügen einer Lieferadresse
 });
 
 module.exports = mongoose.model("User", UserSchema);
+
+
+

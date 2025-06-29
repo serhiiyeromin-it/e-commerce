@@ -44,12 +44,12 @@ const Products = () => {
           "Content-Type": "multipart/form-data",
         },
       });
-      alert("Товар добавлен");
+      alert("Produkt hinzugefügt");
       fetchProducts();
       setForm({ title: "", description: "", price: "", image: null });
       if (fileInputRef.current) fileInputRef.current.value = null;
     } catch (err) {
-      console.error("Ошибка добавления:", err.response?.data || err.message);
+      console.error("Fehler beim Hinzufügen:", err.response?.data || err.message);
     }
   };
 
@@ -60,19 +60,19 @@ const Products = () => {
         headers: { Authorization: `Bearer ${token}` },
       });
       setProducts(products.filter((p) => p._id !== id));
-      alert("Товар удалён");
+      alert("Produkt gelöscht");
     } catch (err) {
-      console.error("Ошибка удаления:", err.response?.data || err.message);
+      console.error("Fehler beim Löschen:", err.response?.data || err.message);
     }
   };
 
   return (
     <div style={{ padding: "30px", fontFamily: "Arial, sans-serif" }}>
-      <h2 style={{ marginBottom: "20px" }}>📦 Управление товарами</h2>
+      <h2 style={{ marginBottom: "20px" }}>📦 Verwaltung der Produkte</h2>
 
       <div style={{ marginBottom: "40px" }}>
         {products.length === 0 ? (
-          <p>Нет добавленных товаров.</p>
+          <p>Keine hinzugefügten Produkte.</p>
         ) : (
           <ul style={{ listStyle: "none", padding: 0 }}>
             {products.map((p) => (
@@ -104,7 +104,7 @@ const Products = () => {
                     cursor: "pointer",
                   }}
                 >
-                  Удалить
+                  Entfernen
                 </button>
               </li>
             ))}
@@ -112,7 +112,7 @@ const Products = () => {
         )}
       </div>
 
-      <h3 style={{ marginBottom: "15px" }}>➕ Добавить товар</h3>
+      <h3 style={{ marginBottom: "15px" }}>➕ Produkt hinzufügen</h3>
       <div
         style={{
           display: "grid",
@@ -122,20 +122,20 @@ const Products = () => {
         }}
       >
         <input
-          placeholder="Название"
+          placeholder="Produktname"
           value={form.title}
           onChange={(e) => setForm({ ...form, title: e.target.value })}
           style={{ padding: "8px", borderRadius: "6px", border: "1px solid #ccc" }}
         />
         <input
-          placeholder="Описание"
+          placeholder="Beschreibung"
           value={form.description}
           onChange={(e) => setForm({ ...form, description: e.target.value })}
           style={{ padding: "8px", borderRadius: "6px", border: "1px solid #ccc" }}
         />
         <input
           type="number"
-          placeholder="Цена"
+          placeholder="Preis"
           value={form.price}
           onChange={(e) => setForm({ ...form, price: e.target.value })}
           style={{ padding: "8px", borderRadius: "6px", border: "1px solid #ccc" }}
@@ -159,7 +159,7 @@ const Products = () => {
             fontWeight: "bold",
           }}
         >
-          Добавить товар
+          Produkt hinzufügen
         </button>
       </div>
     </div>

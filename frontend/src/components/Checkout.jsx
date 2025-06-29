@@ -46,14 +46,14 @@ const Checkout = () => {
         }
       );
 
-      alert("Заказ создан!");
+      alert("Die Bestellung wurde erstellt!");
       clearCart();
       setCustomer("");
       setAddress("");
       navigate("/success");
       window.location.reload();
     } catch (error) {
-      console.error("Ошибка при заказе", error);
+      console.error("Fehler beim Bestellen:", error);
     }
   };
 
@@ -69,11 +69,11 @@ const Checkout = () => {
         fontFamily: "Arial, sans-serif",
       }}
     >
-      <h2 style={{ fontSize: "24px", marginBottom: "20px" }}>📝 Оформление заказа</h2>
+      <h2 style={{ fontSize: "24px", marginBottom: "20px" }}>📝 Eine Bestellung aufgeben</h2>
 
       <input
         type="text"
-        placeholder="Имя"
+        placeholder="Name"
         value={customer}
         onChange={(e) => setCustomer(e.target.value)}
         style={{
@@ -87,7 +87,7 @@ const Checkout = () => {
 
       <input
         type="text"
-        placeholder="Адрес"
+        placeholder="Adresse"
         value={address}
         onChange={(e) => setAddress(e.target.value)}
         style={{
@@ -99,7 +99,7 @@ const Checkout = () => {
         }}
       />
 
-      <h3 style={{ marginBottom: "10px" }}>🛍️ Товары в корзине:</h3>
+      <h3 style={{ marginBottom: "10px" }}>🛍️ Produkte im Warenkorb:</h3>
       <ul style={{ paddingLeft: "20px", marginBottom: "20px", listStyle: "none", }}>
         {cartItems.map((item) => (
           <li key={item.id}>
@@ -120,7 +120,7 @@ const Checkout = () => {
           fontSize: "16px",
         }}
       >
-        💳 Перейти к оплате
+        💳 Zur Kasse gehen
       </button>
     </div>
   );

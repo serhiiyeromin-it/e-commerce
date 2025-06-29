@@ -3,32 +3,32 @@ const express = require("express");
 const router = express.Router();
 const { authMiddleware } = require("../middleware/authMiddleware");
 
-// ⬇️ Теперь модель импортируется корректно
+// ⬇️ Jetzt wird das Modell korrekt importiert
 const Order = require("../models/Order");
 
-// ✅ Создание заказа
+// ✅ Erstellung einer Bestellung
 router.post("/order", authMiddleware, async (req, res) => {
   try {
     const order = new Order({
       ...req.body,
-      userId: req.user.id, // 💡 привязываем заказ к пользователю
+      userId: req.user.id, // 💡Wir sind an die Bestellung des Benutzers gebunden
     });
     await order.save();
-    res.status(201).json({ message: "Заказ создан успешно" });
+    res.status(201).json({ message: "Bestellung erfolgreich erstellt" });
   } catch (err) {
     console.error(err);
-    res.status(500).json({ error: "Ошибка создания заказа" });
+    res.status(500).json({ error: "Fehler bei der Erstellung der Bestellung" });
   }
 });
 
-// ✅ Получение заказов текущего пользователя
+// ✅ Abrufen der Bestellungen des aktuellen Benutzers
 router.get("/orders", authMiddleware, async (req, res) => {
   try {
     const orders = await Order.find({ userId: req.user.id }).sort({ createdAt: -1 });
     res.json(orders);
   } catch (err) {
-    console.error("Ошибка получения заказов:", err);
-    res.status(500).json({ error: "Не удалось получить заказы" });
+    console.error("Fehler beim Abrufen der Bestellungen:", err);
+    res.status(500).json({ error: "Bestellungen konnten nicht abgerufen werden" });
   }
 });
 

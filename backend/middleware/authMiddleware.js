@@ -1,14 +1,15 @@
 
+
 const jwt = require("jsonwebtoken");
 
-// 🔐 Middleware для проверки токена (для любого авторизованного пользователя)
+// 🔐 Middleware zur Token-Verifizierung (für jeden autorisierten Benutzer)
 const authMiddleware = (req, res, next) => {
-  console.log("ВСЕ ЗАГОЛОВКИ:", req.headers);
+  console.log("ALLE ÜBERSCHRIFTEN:", req.headers);
   const authHeader = req.headers.authorization;
-  console.log("Заголовки:", authHeader);
+  console.log("Zugriff:", authHeader);
 
   if (!authHeader || !authHeader.startsWith("Bearer ")) {
-    return res.status(401).json({ message: "Нет токена!" });
+    return res.status(401).json({ message: "Kein Token!" });
   }
 
   const token = authHeader.split(" ")[1];
@@ -17,23 +18,23 @@ const authMiddleware = (req, res, next) => {
     // const decoded = jwt.verify(token, process.env.JWT_SECRET);
     const decoded = jwt.verify(token, "SECRET_KEY");
 
-    console.log("Расшифрованный токен:", decoded);
-    req.user = decoded; // decoded должен включать userId, email, role и т.д.
+    console.log("Entschlüsseltes Token:", decoded);
+    req.user = decoded; // dekodiert sollte Benutzer-ID, E-Mail, Rolle usw. enthalten.
     next();
   } catch (err) {
-    return res.status(403).json({ message: "Неверный токен!" });
+    return res.status(403).json({ message: "Ungültiges Token!" });
   }
 };
 
-// 👮 Middleware для проверки роли администратора
+// 👮 Middleware zur Überprüfung der Administratorrolle
 const verifyAdmin = (req, res, next) => {
   if (!req.user || req.user.role !== "admin") {
-    return res.status(403).json({ message: "Доступ запрещён!" });
+    return res.status(403).json({ message: "Zugriff verweigert!" });
   }
   next();
 };
 
-// 📤 Экспортируем оба middleware
+// 📤 Exportieren Sie beide Middlewares
 
 
 

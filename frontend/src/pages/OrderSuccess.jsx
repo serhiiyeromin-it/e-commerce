@@ -21,7 +21,7 @@ const OrderSuccess = () => {
         ✅ Спасибо за заказ!
       </h2>
       <p style={{ fontSize: "18px", marginBottom: "30px" }}>
-        Ваш заказ был успешно оформлен.
+        Ihre Bestellung wurde erfolgreich aufgegeben.
       </p>
       <Link
         to="/"
@@ -35,7 +35,7 @@ const OrderSuccess = () => {
           fontWeight: "bold",
         }}
       >
-        ⬅ Вернуться на главную
+        ⬅ Zurück zur Startseite
       </Link>
     </div>
   );

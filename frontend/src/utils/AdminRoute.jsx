@@ -21,7 +21,7 @@ const AdminRoute = ({ children }) => {
       });
   }, []);
 
-  if (isAdmin === null) return <p>Загрузка...</p>;
+  if (isAdmin === null) return <p>Laden...</p>;
 
   return isAdmin ? children : <Navigate to="/" />;
 };

@@ -14,16 +14,16 @@ const CheckoutForm = ({ orderData }) => {
   const [clientSecret, setClientSecret] = useState("");
 
   useEffect(() => {
-    // вычисляем общую сумму
+    // Wir berechnen den Gesamtbetrag
     const total = orderData.cartItems.reduce(
       (sum, item) => sum + item.price * (item.quantity || 1),
       0
     );
 
-    // получаем clientSecret
+    // Wir erhalten das clientSecret
     const getClientSecret = async () => {
       const res = await axios.post("http://localhost:5000/api/create-payment-intent", {
-        amount: total * 100, // Stripe принимает копейки
+        amount: total * 100, // Stripe akzeptiert Cent-Beträge
       });
       setClientSecret(res.data.clientSecret);
     };
@@ -75,7 +75,7 @@ const CheckoutForm = ({ orderData }) => {
         navigate("/success");
       }
     } catch (err) {
-      console.error("Ошибка при оплате или заказе:", err);
+      console.error("Fehler bei der Zahlung oder Bestellung:", err);
     }
   };
 

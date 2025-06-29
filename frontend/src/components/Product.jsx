@@ -11,7 +11,7 @@ const Catalog = () => {
     axios
       .get("http://localhost:5000/api/products")
       .then((res) => setProducts(res.data))
-      .catch((err) => console.error("Ошибка при загрузке каталога", err));
+      .catch((err) => console.error("Fehler beim Laden des Katalogs", err));
   }, []);
 
   return (
@@ -24,7 +24,7 @@ const Catalog = () => {
       }}
     >
       <h2 style={{ fontSize: "28px", marginBottom: "30px", textAlign: "center" }}>
-        🛍️ Каталог товаров
+        🛍️ Produktkatalog
       </h2>
 
       <div
@@ -91,7 +91,7 @@ const Catalog = () => {
               onMouseOver={(e) => (e.target.style.backgroundColor = "#2b6cb0")}
               onMouseOut={(e) => (e.target.style.backgroundColor = "#3182ce")}
             >
-              🛒 Добавить в корзину
+              🛒 In den Warenkorb legen
             </button>
           </div>
         ))}

@@ -9,11 +9,11 @@ export default function Register() {
     e.preventDefault();
     try {
       await axios.post("http://localhost:5000/api/register", form);
-      alert("Регистрация успешна!");
-      setForm({ username: "", email: "", password: "" }); // очистить поля
+      alert("Registrierung erfolgreich!");
+      setForm({ username: "", email: "", password: "" }); //freie Felder
     } catch (error) {
-      console.error("Ошибка при регистрации:", error);
-      alert("Ошибка при регистрации");
+      console.error("Fehler bei der Registrierung:", error);
+      alert("Fehler bei der Registrierung");
     }
   };
 
@@ -35,7 +35,7 @@ export default function Register() {
     >
       <input
         type="text"
-        placeholder="Имя"
+        placeholder="Name"
         value={form.username}
         onChange={(e) => setForm({ ...form, username: e.target.value })}
         style={{
@@ -59,7 +59,7 @@ export default function Register() {
       />
       <input
         type="password"
-        placeholder="Пароль"
+        placeholder="Passwort"
         value={form.password}
         onChange={(e) => setForm({ ...form, password: e.target.value })}
         style={{
@@ -84,7 +84,7 @@ export default function Register() {
         onMouseOver={(e) => (e.target.style.backgroundColor = "#45a049")}
         onMouseOut={(e) => (e.target.style.backgroundColor = "#4CAF50")}
       >
-        Регистрация
+        Registrierung
       </button>
     </form>
   );

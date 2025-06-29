@@ -21,12 +21,12 @@ const Header = () => {
 
       {/* Навигация */}
       <nav style={styles.nav}>
-        <NavLink to="/" style={styles.link}>Главная</NavLink>
-        <NavLink to="/login" style={styles.link}>login</NavLink>
-        <NavLink to="/register" style={styles.link}>register</NavLink>
+        <NavLink to="/" style={styles.link}>Startseite</NavLink>
+        <NavLink to="/login" style={styles.link}>Anmelden</NavLink>
+        <NavLink to="/register" style={styles.link}>Registrieren</NavLink>
       </nav>
 
-      {/* Корзина */}
+      {/* Korb */}
       <div onClick={() => navigate("/cart")} style={styles.cart}>
         🛒
         {totalCount > 0 && (
@@ -44,6 +44,7 @@ const styles = {
     alignItems: "center",
     padding: "10px 20px",
     background: "#f5f5f5",
+    boxShadow: "0 2px 8px rgba(0, 0, 0, 0.1)",
   },
   logo: {
     height: "100px",

@@ -14,7 +14,7 @@ const Banner = () => {
       setCurrentIndex((prevIndex) =>
         prevIndex === images.length - 1 ? 0 : prevIndex + 1
       );
-    }, 3000); // смена каждые 3 секунды
+    }, 3000); // Änderung alle 3 Sekunden
 
     return () => clearInterval(timer);
   }, []);
@@ -43,9 +43,7 @@ const styles = {
     width: "1200px",
     height: "400px",
     objectFit: "cover",
-
     transition: "opacity 0.5s ease-in-out",
->>>>>>> Produktliste-mit-Filter,-Suche,-Sortierung-&-Pagination
   },
 };
 

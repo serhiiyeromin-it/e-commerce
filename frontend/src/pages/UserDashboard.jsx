@@ -13,13 +13,13 @@ export default function Dashboard() {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then((res) => setUser(res.data))
-      .catch((err) => console.error("Ошибка при загрузке данных пользователя", err));
+      .catch((err) => console.error("Fehler beim Laden der Benutzerdaten", err));
 
     axios.get("http://localhost:5000/api/orders", {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then((res) => setOrders(res.data))
-      .catch((err) => console.error("Ошибка при загрузке заказов", err));
+      .catch((err) => console.error("Fehler beim Laden der Bestellungen", err));
   }, []);
 
   const handleLogout = () => {
@@ -39,9 +39,9 @@ export default function Dashboard() {
         fontFamily: "Arial, sans-serif",
       }}
     >
-      <h1 style={{ marginBottom: "10px", fontSize: "28px", color: "#333" }}>Личный кабинет</h1>
+      <h1 style={{ marginBottom: "10px", fontSize: "28px", color: "#333" }}>Benutzer-Dashboard</h1>
       <p style={{ fontSize: "18px", marginBottom: "20px" }}>
-        Добро пожаловать, <strong>{user?.name || "пользователь"}</strong>!
+        Willkommen, <strong>{user?.name || "Benutzer"}</strong>!
       </p>
 
       <button
@@ -56,7 +56,7 @@ export default function Dashboard() {
           marginBottom: "30px",
         }}
       >
-        Выйти
+        Abmelden
       </button>
 
       {user && (
@@ -69,17 +69,17 @@ export default function Dashboard() {
             marginBottom: "40px",
           }}
         >
-          <h2 style={{ fontSize: "20px", marginBottom: "10px" }}>🧑 Информация о пользователе</h2>
-          <p><strong>Имя:</strong> {user.name}</p>
+          <h2 style={{ fontSize: "20px", marginBottom: "10px" }}>🧑 Benutzerinformationen</h2>
+          <p><strong>Name:</strong> {user.name}</p>
           <p><strong>Email:</strong> {user.email}</p>
-          {/* <p><strong>Адрес доставки:</strong> {user.address || "Не указан"}</p> */}
+          {/* <p><strong>Lieferadresse:</strong> {user.address || "Nicht angegeben"}</p> */}
         </div>
       )}
 
       <div>
-        <h2 style={{ fontSize: "20px", marginBottom: "15px" }}>📦 История заказов</h2>
+        <h2 style={{ fontSize: "20px", marginBottom: "15px" }}>📦 Bestellverlauf</h2>
         {orders.length === 0 ? (
-          <p>У вас пока нет заказов.</p>
+          <p>Sie haben noch keine Bestellungen.</p>
         ) : (
           orders.map((order) => (
             <div
@@ -92,8 +92,8 @@ export default function Dashboard() {
                 backgroundColor: "#fdfdfd",
               }}
             >
-              <p><strong>Дата:</strong> {new Date(order.createdAt).toLocaleDateString()}</p>
-              <p><strong>Адрес доставки:</strong> {order.address}</p>
+              <p><strong>Datum:</strong> {new Date(order.createdAt).toLocaleDateString()}</p>
+              <p><strong>Lieferadresse:</strong> {order.address}</p>
               <ul style={{ paddingLeft: "20px", listStyle: "none", }}>
                 {order.items.map((item, idx) => (
                   <li key={idx}>

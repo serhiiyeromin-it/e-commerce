@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "🧹 Удаляю кэш..."
+echo "🧹 Ich lösche den Cache..."
 rm -rf node_modules/.cache
 rm -rf build dist
-echo "✅ Кэш успешно очищен"
+echo "✅ Cache erfolgreich gelöscht"

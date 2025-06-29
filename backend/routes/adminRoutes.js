@@ -6,7 +6,7 @@ const { authMiddleware, verifyAdmin } = require("../middleware/authMiddleware");
 
 const User = require("../models/User");
 const Order = require("../models/Order");
-const Product = require("../models/Product"); // 🔧 раскомментируй
+const Product = require("../models/Product");
 
 const multer = require("multer");
 const path = require("path");
@@ -26,46 +26,46 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 
-// 🔐 Только для админов
+// 🔐 Nur für Administratoren
 
-// ✅ Получение всех пользователей
+// ✅ Alle Benutzer abrufen
 router.get("/users", authMiddleware, verifyAdmin, async (req, res) => {
   const users = await User.find().select("-password");
   res.json(users);
 });
 
-// ✅ Удаление пользователя
+// ✅ Löschen eines Benutzers
 router.delete("/users/:id", authMiddleware, verifyAdmin, async (req, res) => {
   await User.findByIdAndDelete(req.params.id);
-  res.json({ message: "Пользователь удалён" });
+  res.json({ message: "Benutzer gelöscht" });
 });
 
-// ✅ Получение всех заказов
+// ✅ Alle Bestellungen abrufen
 router.get("/orders", authMiddleware, verifyAdmin, async (req, res) => {
   const orders = await Order.find().populate("userId", "email username");
   res.json(orders);
 });
 
-// ✅ Удаление заказа
+// ✅ Löschen einer Bestellung
 router.delete("/orders/:id", authMiddleware, verifyAdmin, async (req, res) => {
   await Order.findByIdAndDelete(req.params.id);
-  res.json({ message: "Заказ удалён" });
+  res.json({ message: "Bestellung gelöscht" });
 });
 
-// ✅ Изменение роли пользователя
+// ✅ Ändern der Rolle eines Benutzers
 router.put("/user/:id/role", authMiddleware, verifyAdmin, async (req, res) => {
   await User.findByIdAndUpdate(req.params.id, { role: req.body.role });
-  res.json({ message: "Роль обновлена" });
+  res.json({ message: "Rolle aktualisiert" });
 });
 
-// ✅ Получение всех товаров
+// ✅ Alle Produkte abrufen
 router.get("/products", authMiddleware, verifyAdmin, async (req, res) => {
   const products = await Product.find();
   res.json(products);
 });
 
 
-// ✅ Добавление нового товара (с изображением!)
+// ✅ Hinzufügen eines neuen Produkts (mit Bild!)
 router.post(
   "/products",
   authMiddleware,
@@ -83,12 +83,12 @@ router.post(
     });
 
     await newProduct.save();
-    res.json({ message: "Товар добавлен", product: newProduct });
+    res.json({ message: "Produkt hinzugefügt", product: newProduct });
   }
 );
 
 
-// ✅ Обновление товара
+// ✅ Aktualisierung des Produkts
 router.put("/products/:id", authMiddleware, verifyAdmin, async (req, res) => {
   const { title, description, price, image } = req.body;
 
@@ -98,13 +98,13 @@ router.put("/products/:id", authMiddleware, verifyAdmin, async (req, res) => {
     { new: true }
   );
 
-  res.json({ message: "Товар обновлён", product: updatedProduct });
+  res.json({ message: "Produkt aktualisiert", product: updatedProduct });
 });
 
-// ✅ Удаление товара (было у тебя — оставляем)
+// ✅ Löschen eines Produkts (blieb bei dir - lassen wir es so)
 router.delete("/products/:id", authMiddleware, verifyAdmin, async (req, res) => {
   await Product.findByIdAndDelete(req.params.id);
-  res.json({ message: "Товар удалён!" });
+  res.json({ message: "Produkt gelöscht!" });
 });
 
 module.exports = router;

@@ -2,11 +2,11 @@
 const Footer = () => {
   return (
     <footer style={styles.footer}>
-      <div>© {new Date().getFullYear()} E-Commerce. Все права защищены.</div>
+      <div>© {new Date().getFullYear()} E-Commerce. Alle Rechte vorbehalten.</div>
       <div style={styles.links}>
-        <a href="/about" style={styles.link}>О нас</a>
-        <a href="/contacts" style={styles.link}>Контакты</a>
-        <a href="/privacy" style={styles.link}>Политика конфиденциальности</a>
+        <a href="/about" style={styles.link}>Über uns</a>
+        <a href="/contacts" style={styles.link}>Kontakte</a>
+        <a href="/privacy" style={styles.link}>Datenschutz-Bestimmungen</a>
       </div>
     </footer>
   );

@@ -11,10 +11,10 @@ const Orders = () => {
       await axios.delete(`http://localhost:5000/api/admin/orders/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
-      alert("Заказ удалён");
+      alert("Bestellung gelöscht");
       setOrders(orders.filter((o) => o._id !== id));
     } catch (err) {
-      console.error("Ошибка удаления:", err.response?.data || err.message);
+      console.error("Fehler beim Löschen:", err.response?.data || err.message);
     }
   };
 
@@ -26,15 +26,15 @@ const Orders = () => {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => setOrders(res.data))
-      .catch((err) => console.error("Ошибка при загрузке заказов", err));
+      .catch((err) => console.error("Fehler beim Laden der Bestellungen:", err));
   }, []);
 
   return (
     <div style={{ padding: "30px", fontFamily: "Arial, sans-serif" }}>
-      <h2 style={{ marginBottom: "20px" }}>📦 Все заказы</h2>
+      <h2 style={{ marginBottom: "20px" }}>📦 Alle Bestellungen</h2>
 
       {orders.length === 0 ? (
-        <p>Нет заказов.</p>
+        <p>Keine Bestellungen.</p>
       ) : (
         orders.map((order) => (
           <div
@@ -48,11 +48,11 @@ const Orders = () => {
               boxShadow: "0 2px 6px rgba(0,0,0,0.05)",
             }}
           >
-            <p><strong>👤 Пользователь:</strong> {order.customer}</p>
-            <p><strong>📍 Адрес:</strong> {order.address}</p>
-            <p><strong>📅 Дата:</strong> {new Date(order.createdAt).toLocaleDateString("ru-RU")}</p>
+            <p><strong>👤 Benutzer:</strong> {order.customer}</p>
+            <p><strong>📍 Adresse:</strong> {order.address}</p>
+            <p><strong>📅 Datum:</strong> {new Date(order.createdAt).toLocaleDateString("de-DE")}</p>
 
-            <h4 style={{ marginTop: "15px", marginBottom: "8px" }}>🛒 Товары:</h4>
+            <h4 style={{ marginTop: "15px", marginBottom: "8px" }}>🛒 Produkte:</h4>
             <ul style={{ paddingLeft: "20px", listStyle: "none", }}>
               {order.items.map((item, idx) => (
                 <li key={idx}>
@@ -73,7 +73,7 @@ const Orders = () => {
                 cursor: "pointer",
               }}
             >
-              ❌ Удалить заказ
+              ❌ Auftrag löschen
             </button>
           </div>
         ))

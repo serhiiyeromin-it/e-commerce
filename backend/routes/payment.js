@@ -15,7 +15,7 @@ router.post("/create-payment-intent", async (req, res) => {
   try {
     const paymentIntent = await stripe.paymentIntents.create({
       amount,
-      currency: "rub", // или "usd", в зависимости от нужной валюты
+      currency: "rub", // oder "usd", abhängig von der Währung, die Sie benötigen
       payment_method_types: ["card"],
     });
 

@@ -17,7 +17,7 @@ const productSchema = new mongoose.Schema({
   },
 
   image: {
-    type: String, // путь к изображению или URL
+    type: String, // Bildpfad oder URL
     required: true,
   },
 
@@ -30,3 +30,4 @@ const productSchema = new mongoose.Schema({
 const Product = mongoose.model("Product", productSchema);
 
 module.exports = Product;
+

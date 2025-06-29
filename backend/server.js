@@ -5,7 +5,7 @@ const mongoose = require("mongoose");
 
 const app = express();
 // app.use(cors({
-//   origin: "http://localhost:5173", // замените на порт вашего фронта
+//   origin: "http://localhost:5173", // Ersetzen Sie es durch Ihren Frontanschluss
 //   credentials: true,
 //   allowedHeaders: ["Content-Type", "Authorization"],
 // }));

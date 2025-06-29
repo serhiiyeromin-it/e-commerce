@@ -20,14 +20,14 @@ export const CartProvider = ({ children }) => {
     );
 
     if (existingItem) {
-      // Если товар с такой же ценой уже есть — увеличиваем количество
+      // Wenn es bereits ein Produkt mit dem gleichen Preis gibt, erhöhen wir die Menge
       return prevItems.map((item) =>
         item._id === product._id && item.price === product.price
           ? { ...item, quantity: item.quantity + 1 }
           : item
       );
     } else {
-      // Иначе добавляем как новый
+      // Andernfalls fügen wir es als neues Produkt hinzu
       return [...prevItems, { ...product, quantity: 1 }];
     }
   });
@@ -38,12 +38,12 @@ export const CartProvider = ({ children }) => {
     return prevItems.flatMap((item) => {
       if (item._id === productId || item.id === productId) {
         if (item.quantity > 1) {
-          return { ...item, quantity: item.quantity - 1 }; // уменьшаем на 1
+          return { ...item, quantity: item.quantity - 1 }; // Wir verringern die Menge um 1
         } else {
-          return []; // удаляем, если 1
+          return []; // Wir entfernen das Produkt, wenn die Menge 1 ist
         }
       }
-      return item; // оставляем без изменений
+      return item; // Wir lassen das Produkt unverändert
     });
   });
   };

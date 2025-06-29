@@ -12,10 +12,10 @@ export default function Login() {
     try {
       const res = await axios.post("http://localhost:5000/api/login", form);
       localStorage.setItem("token", res.data.token);
-      alert("Вход успешен!");
+      alert("Anmeldung erfolgreich!");
       navigate("/dashboard");
     } catch (err) {
-      alert("Ошибка входа");
+      alert("Fehler bei der Anmeldung");
     }
   };
 
@@ -48,7 +48,7 @@ export default function Login() {
       />
       <input
         type="password"
-        placeholder="Пароль"
+        placeholder="Passwort"
         onChange={(e) => setForm({ ...form, password: e.target.value })}
         style={{
           padding: "12px",
@@ -72,7 +72,7 @@ export default function Login() {
         onMouseOver={(e) => (e.target.style.backgroundColor = "#45a049")}
         onMouseOut={(e) => (e.target.style.backgroundColor = "#4CAF50")}
       >
-        Войти
+        Anmelden
       </button>
     </form>
   );

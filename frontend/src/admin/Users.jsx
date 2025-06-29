@@ -14,7 +14,7 @@ const Users = () => {
       })
       .then((res) => setUsers(res.data))
       .catch((err) =>
-        console.error("Ошибка при загрузке пользователей", err)
+        console.error("Fehler beim Laden der Benutzer", err)
       );
   }, []);
 
@@ -24,16 +24,16 @@ const Users = () => {
       await axios.delete(`http://localhost:5000/api/admin/users/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
-      alert("Пользователь удалён");
+      alert("Benutzer gelöscht");
       setUsers(users.filter((u) => u._id !== id));
     } catch (err) {
-      console.error("Ошибка:", err.response?.data || err.message);
+      console.error("Fehler:", err.response?.data || err.message);
     }
   };
 
   return (
     <div style={{ padding: "30px", fontFamily: "Arial, sans-serif" }}>
-      <h2 style={{ marginBottom: "20px" }}>👥 Все пользователи</h2>
+      <h2 style={{ marginBottom: "20px" }}>👥 Alle Benutzer</h2>
 
       <div style={{ overflowX: "auto" }}>
         <table
@@ -47,11 +47,11 @@ const Users = () => {
         >
           <thead>
             <tr style={{ backgroundColor: "#f3f3f3" }}>
-              <th style={thStyle}>Имя</th>
+              <th style={thStyle}>Name</th>
               <th style={thStyle}>Email</th>
-              <th style={thStyle}>Роль</th>
-              <th style={thStyle}>Адрес</th>
-              <th style={thStyle}>Удаление</th>
+              <th style={thStyle}>Rolle</th>
+              <th style={thStyle}>Adresse</th>
+              <th style={thStyle}>Löschen</th>
             </tr>
           </thead>
           <tbody>
@@ -66,7 +66,7 @@ const Users = () => {
                     onClick={() => deleteUser(u._id)}
                     style={deleteButtonStyle}
                   >
-                    Удалить
+                    Entfernen
                   </button>
                 </td>
               </tr>

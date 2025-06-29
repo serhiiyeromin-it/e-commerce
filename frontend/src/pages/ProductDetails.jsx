@@ -17,7 +17,7 @@ const ProductDetails = () => {
       .catch((err) => console.error("Ошибка загрузки товара:", err));
   }, [id]);
 
-  if (!product) return <p style={{ textAlign: "center" }}>Загрузка...</p>;
+  if (!product) return <p style={{ textAlign: "center" }}>Laden...</p>;
 
   return (
     <div
@@ -40,7 +40,8 @@ const ProductDetails = () => {
         style={{
           width: "350px",
           height: "350px",
-          objectFit: "cover",
+          objectFit: "contain",
+          padding: "10px",
           borderRadius: "10px",
         }}
       />
@@ -50,7 +51,7 @@ const ProductDetails = () => {
           💰 {product.price} $
         </p>
         <p style={{ margin: "20px 0", fontSize: "16px", color: "#333" }}>
-          {product.description || "Нет описания"}
+          {product.description || "Keine Beschreibung vorhanden"}
         </p>
         <button
           onClick={() => addToCart(product)}
@@ -67,7 +68,7 @@ const ProductDetails = () => {
           onMouseOver={(e) => (e.target.style.backgroundColor = "#2b6cb0")}
           onMouseOut={(e) => (e.target.style.backgroundColor = "#3182ce")}
         >
-          🛒 Добавить в корзину
+          🛒 In den Warenkorb legen
         </button>
       </div>
     </div>

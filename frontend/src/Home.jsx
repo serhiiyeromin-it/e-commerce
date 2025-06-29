@@ -19,7 +19,7 @@ const Home = () => {
         setFilteredProducts(res.data);
       })
       .catch((err) => {
-        console.error("Ошибка загрузки товаров:", err);
+        console.error("Fehler beim Laden der Produkte:", err);
       });
   }, []);
 
@@ -56,19 +56,19 @@ const Home = () => {
       <div style={styles.searchContainer}>
         <input
           type="text"
-          placeholder="🔎 Поиск по названию"
+          placeholder="🔎 Suche nach Titel"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           style={styles.input}
         />
         <button onClick={handleSearch} style={styles.button}>
-          Найти
+          Finden
         </button>
 
         <select onChange={handleSortChange} value={sortOrder} style={styles.select}>
-          <option value="">Сортировка</option>
-          <option value="asc">Цена ↑</option>
-          <option value="desc">Цена ↓</option>
+          <option value="">Sortierung</option>
+          <option value="asc">Preis ↑</option>
+          <option value="desc">Preis ↓</option>
         </select>
       </div>
 
@@ -84,7 +84,9 @@ const Home = () => {
               />
               <p>{p.price} $</p>
             </Link>
-            <button onClick={() => addToCart(p)}>Добавить в корзину</button>
+            <button onClick={() => addToCart(p)}>
+              In den Warenkorb legen
+            </button>
           </div>
         ))}
       </div>

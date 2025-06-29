@@ -6,10 +6,10 @@ const AdminLayout = () => {
   const location = useLocation();
 
   const navItems = [
-    { to: "/admin", label: "🏠 Главная" },
-    { to: "/admin/users", label: "👤 Пользователи" },
-    { to: "/admin/orders", label: "📦 Заказы" },
-    { to: "/admin/products", label: "🛒 Товары" },
+    { to: "/admin", label: "🏠 Heim" },
+    { to: "/admin/users", label: "👤 Benutzer" },
+    { to: "/admin/orders", label: "📦 Bestellungen" },
+    { to: "/admin/products", label: "🛒 Produkte" },
   ];
 
   return (
@@ -23,7 +23,7 @@ const AdminLayout = () => {
           padding: "20px",
         }}
       >
-        <h2 style={{ fontSize: "22px", marginBottom: "20px" }}>👑 Админ-панель</h2>
+        <h2 style={{ fontSize: "22px", marginBottom: "20px" }}>👑 Admin-Panel</h2>
         <ul style={{ listStyle: "none", padding: 0, display: "flex", flexDirection: "column", gap: "12px" }}>
           {navItems.map((item) => (
             <li key={item.to}>

@@ -25,10 +25,10 @@ const Cart = () => {
         fontFamily: "Arial, sans-serif",
       }}
     >
-      <h2 style={{ fontSize: "24px", marginBottom: "20px" }}>🛒 Корзина</h2>
+      <h2 style={{ fontSize: "24px", marginBottom: "20px" }}>🛒 Korb</h2>
 
       {cartItems.length === 0 ? (
-        <p style={{ fontSize: "18px", color: "#888" }}>Корзина пуста</p>
+        <p style={{ fontSize: "18px", color: "#888" }}>Der Korb ist leer</p>
       ) : (
         <ul style={{ listStyle: "none", padding: 0 }}>
           {cartItems.map((item) => (
@@ -41,10 +41,10 @@ const Cart = () => {
               }}
             >
               <strong style={{ fontSize: "18px" }}>
-                📦 {item.title || "Без названия"}
+                📦 {item.title || "Ohne Titel"}
               </strong>
               <div style={{ marginTop: "5px", fontSize: "16px" }}>
-                Цена: {item.price} $ × {item.quantity} ={" "}
+                Preis: {item.price} $ × {item.quantity} ={" "}
                 <strong>{item.price * item.quantity} $</strong>
               </div>
               <button
@@ -60,7 +60,7 @@ const Cart = () => {
                   fontSize: "14px",
                 }}
               >
-                Удалить 1 шт
+                Entfernen 1 Stück
               </button>
             </li>
           ))}
@@ -68,7 +68,7 @@ const Cart = () => {
       )}
 
       <h3 style={{ marginTop: "30px", fontSize: "20px" }}>
-        💰 Итого: <span style={{ color: "#2c3e50" }}>{total} $</span>
+        💰 Gesamt: <span style={{ color: "#2c3e50" }}>{total} $</span>
       </h3>
 
       <button
@@ -84,7 +84,7 @@ const Cart = () => {
           cursor: "pointer",
         }}
       >
-        🧾 Оформить заказ
+        🧾 Bestellung aufgeben
       </button>
     </div>
   );

@@ -16,9 +16,9 @@ export default function AdminDashboard() {
         textAlign: "center",
       }}
     >
-      <h1 style={{ fontSize: "32px", marginBottom: "10px" }}>👑 Админ-панель</h1>
+      <h1 style={{ fontSize: "32px", marginBottom: "10px" }}>👑 Admin-Panel</h1>
       <p style={{ fontSize: "18px", color: "#555" }}>
-        Выберите раздел для управления:
+        Wählen Sie einen Bereich zur Verwaltung:
       </p>
 
       <ul
@@ -47,7 +47,7 @@ export default function AdminDashboard() {
             onMouseOver={(e) => (e.target.style.backgroundColor = "#2b6cb0")}
             onMouseOut={(e) => (e.target.style.backgroundColor = "#3182ce")}
           >
-            👤 Пользователи
+            👤 Benutzer
           </Link>
         </li>
         <li>
@@ -66,7 +66,7 @@ export default function AdminDashboard() {
             onMouseOver={(e) => (e.target.style.backgroundColor = "#2f855a")}
             onMouseOut={(e) => (e.target.style.backgroundColor = "#38a169")}
           >
-            📦 Заказы
+            📦 Bestellungen
           </Link>
         </li>
         <li>
@@ -85,7 +85,7 @@ export default function AdminDashboard() {
             onMouseOver={(e) => (e.target.style.backgroundColor = "#b7791f")}
             onMouseOut={(e) => (e.target.style.backgroundColor = "#d69e2e")}
           >
-            🛒 Товары
+            🛒 Produkte
           </Link>
         </li>
       </ul>
